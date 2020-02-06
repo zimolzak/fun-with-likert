@@ -1,6 +1,9 @@
 library(ggplot2)
 samp_size = 650
-unit_interval = c(0,1,2,3,4,5,6,7,8,9,10) / 10
+
+likert_beta = function(n, a, b){
+	round(rbeta(n, a, b) * 4)
+}
 
 b22 = rbeta(samp_size, 2, 2)
 qplot(round(b22 * 4))
