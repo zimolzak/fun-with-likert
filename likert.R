@@ -58,9 +58,10 @@ for (q in 1:6){
         tt = t.test(score ~ group, data = X[X$question_num == q, ])
         tab = with(X[ X$question_num == q, ], table(score, group)) # 5x2 table
         catt = prop.trend.test(tab[,1], apply(tab,1, sum))
+        cs = prop.test(tab[,1], apply(tab,1, sum))
         # https://www.rdocumentation.org/packages/DescTools/versions/0.99.32/topics/CochranArmitageTest
 
-        temp_frame = data.frame(question = q, wilcoxon_p = wt$p.value, ttest_p = tt$p.value, catt_p = catt$p.value)
+        temp_frame = data.frame(question = q, wilcoxon_p = wt$p.value, ttest_p = tt$p.value, catt_p = catt$p.value, chi_p = cs$p.value)
         Results= rbind(Results, temp_frame)
         #print(q)
         #print(wt)
