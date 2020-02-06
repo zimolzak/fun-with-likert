@@ -14,12 +14,8 @@ of the 6 questions. Three statistical tests (columns in the table) are
 tried:
 
 1. Wilcoxon rank sum, a.k.a. Mann-Whitney
-
 2. T-test (unpaired)
-
-3. Chi-squared test for trend in proportions (Cochran–Armitage test
-for trend)
-
+3. Chi-squared test for trend in proportions (Cochran–Armitage test for trend)
 4. Pearson's chi-squared test ("plain old" chi-squared that doesn't
 know ordinal from categorical)
 
