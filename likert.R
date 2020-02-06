@@ -59,6 +59,8 @@ g + geom_bar(aes(fill=as.factor(score))) # kind of like spineplot, colors not gr
 
 #### TESTS
 
+Results = data.frame()
+
 for (q in 1:6){
 	wt = wilcox.test(X[X$question_num == q & X$timepoint == "pre", ]$score,
 				X[X$question_num == q & X$timepoint == "post", ]$score)
@@ -66,10 +68,13 @@ for (q in 1:6){
 	tab = with(X[ X$question_num == q, ], table(score, timepoint)) # 5x2 table
 	catt = prop.trend.test(tab[,1], apply(tab,1, sum))
 	# https://www.rdocumentation.org/packages/DescTools/versions/0.99.32/topics/CochranArmitageTest
-	print(q)
-	print(wt)
-	print(tt)
-	print(catt)
+
+	temp_frame = data.frame(question = q, wilcoxon_p = wt$p.value, ttest_p = tt$p.value, catt_p = catt$p.value)
+	Results= rbind(Results, temp_frame)
+	#print(q)
+	#print(wt)
+	#print(tt)
+	#print(catt)
 }
 
 tapply(X$pop_name, X[,-2], length) # 5x2 tables for each of 6 questions
@@ -77,3 +82,5 @@ tapply(X$pop_name, X[,-2], length) # 5x2 tables for each of 6 questions
 # T test maybe OK?
 # Norman G. Adv Health Sci Educ Theory Pract. 2010 Dec;15(5):625-32. PMID 20146096.
 # Sullivan & Artino. J Grad Med Educ. 2013 Dec; 5(4): 541–542. PMID 24454995.
+
+round(Results, 8)
