@@ -5,14 +5,11 @@ likert_beta = function(n, a, b){
 	round(rbeta(n, a, b) * 4)
 }
 
-b22 = rbeta(samp_size, 2, 2)
-qplot(round(b22 * 4))
+centered = likert_beta(samp_size, 2, 2)
+r_tail = likert_beta(samp_size, 2, 4)
+l_tail = likert_beta(samp_size, 4, 2)
 
-b24 = rbeta(samp_size, 2, 4)
-qplot(round(b24 * 4), xlim=c(-0.1,4))
 
-b42 = rbeta(samp_size, 4, 2)
-qplot(round(b42 * 4), xlim=c(-0.1,4.2))
 
 qplot(rbeta(samp_size, 8,   1))   # concave
 qplot(rbeta(samp_size, 8,   0.9)) # more concave?
