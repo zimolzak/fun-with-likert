@@ -20,6 +20,7 @@ moderate_ramp = likert_beta(samp_size, 1.5, 1)
 very_spiky    = likert_beta(samp_size, 1.5, 0.5)
 less_spiky    = likert_beta(samp_size, 1,   0.5)
 
+
 #### BUILD UP A DATA FRAME
 
 samp_names = c("centered", "r_tail", "l_tail", "concave", "more_concave", "ramp", "gentle_ramp", "ramp2", "moderate_ramp", "very_spiky", "less_spiky", "moderate_ramp")
@@ -61,9 +62,19 @@ g + geom_bar(aes(fill=as.factor(score))) # kind of like spineplot, colors not gr
 for (q in 1:6){
 	wt = wilcox.test(X[X$question_num == q & X$timepoint == "pre", ]$score,
 				X[X$question_num == q & X$timepoint == "post", ]$score)
+	tt = t.test(score ~ timepoint, data = X[X$question_num == q, ])
 	print(q)
 	print(wt)
+	print(tt)
 }
 
 #prop.test
 #prop.trend.test
+
+with(X[ X$question_num == 1, ], table(timepoint, score)) # 2x5 table
+
+tapply(X$pop_name, X[,-2], length) # 5x2 tables for each of 6 questions
+
+# T test maybe OK?
+# Norman G. Adv Health Sci Educ Theory Pract. 2010 Dec;15(5):625-32. PMID 20146096.
+# Sullivan & Artino. J Grad Med Educ. 2013 Dec; 5(4): 541–542. PMID 24454995.
