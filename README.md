@@ -10,8 +10,8 @@ Results
 ========
 
 Here is a table of *p* values, comparing group A to group B, for each
-of the 6 questions. Three statistical tests (columns in the table) are
-tried:
+of the 6 questions. The following statistical tests (columns in the
+table) are tried:
 
 1. Wilcoxon rank sum, a.k.a. Mann-Whitney
 2. T-test (unpaired)
@@ -28,6 +28,8 @@ question wilcoxon_p    ttest_p     catt_p      chi_p
        5 0.00000512 0.00000393 0.00000805 0.00026705
        6 0.01127898 0.01054839 0.01079998 0.03702442
 ```
+
+Plot of fake survey data (one question per row):
 
 ![plot of likert data](facet_grid.png "Plot of Likert data")
 
