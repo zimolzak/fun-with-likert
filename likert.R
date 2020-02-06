@@ -1,8 +1,11 @@
 library(ggplot2)
+
+#### GENERATE ASSORTED SAMPLES OF FAKE LIKERT DATA
+
 samp_size = 60
 
 likert_beta = function(n, a, b){
-        round(rbeta(n, a, b) * 4)
+        round(rbeta(n, a, b) * 4)   # 0 to 4 Likert scale
 }
 
 centered      = likert_beta(samp_size, 2,   2)
@@ -16,6 +19,8 @@ ramp2         = likert_beta(samp_size, 2,   1)
 moderate_ramp = likert_beta(samp_size, 1.5, 1)
 very_spiky    = likert_beta(samp_size, 1.5, 0.5)
 less_spiky    = likert_beta(samp_size, 1,   0.5)
+
+#### BUILD UP A DATA FRAME
 
 samp_names = c("centered", "r_tail", "l_tail", "concave", "more_concave", "ramp", "gentle_ramp", "ramp2", "moderate_ramp", "very_spiky", "less_spiky", "moderate_ramp")
 
@@ -37,6 +42,7 @@ for (s in samp_names[-1]){
 	npanel = npanel + 1
 }
 
+
 #### PLOTS AND ANALYSIS
 
 p = ggplot(X, aes(score)) + geom_bar()
@@ -46,11 +52,18 @@ p + facet_wrap(vars(pop_name))    # wrap, broken in several cols
 
 p + facet_grid(rows = vars(question_num), cols = vars(timepoint)) # best one yet
 
-wilcox.test(ramp, gentle_ramp)
+g = ggplot(X, aes(pop_name))
+g + geom_bar(aes(fill=as.factor(score))) # kind of like spineplot, colors not great
+
+
+#### TESTS
+
+for (q in 1:6){
+	wt = wilcox.test(X[X$question_num == q & X$timepoint == "pre", ]$score,
+				X[X$question_num == q & X$timepoint == "post", ]$score)
+	print(q)
+	print(wt)
+}
 
 #prop.test
 #prop.trend.test
-#spineplot
-
-g = ggplot(X, aes(pop_name))
-g + geom_bar(aes(fill=as.factor(score))) # kind of spine plot, colors not great
