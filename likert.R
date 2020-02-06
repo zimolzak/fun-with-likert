@@ -17,8 +17,6 @@ moderate_ramp = likert_beta(samp_size, 1.5, 1)
 very_spiky    = likert_beta(samp_size, 1.5, 0.5)
 less_spiky    = likert_beta(samp_size, 1,   0.5)
 
-
-
 samp_names = c("centered", "r_tail", "l_tail", "concave", "more_concave", "ramp", "gentle_ramp", "ramp2", "moderate_ramp", "very_spiky", "less_spiky")
 
 X = data.frame(score = centered, pop_name = rep("centered", length(centered)))
@@ -29,12 +27,18 @@ for (s in samp_names[-1]){
 	X = rbind(X, temp_frame)
 }
 
+#### PLOTS AND ANALYSIS
 
-p = ggplot(X, aes(score)) + geom_histogram()
-p + facet_grid(rows = vars(pop_name))
+p = ggplot(X, aes(score)) + geom_bar()
+p + facet_grid(rows = vars(pop_name))  # all in one col, lined up
 
-
-
-
+p + facet_wrap(vars(pop_name))    # wrap, broken in several cols
 
 wilcox.test(ramp, gentle_ramp)
+
+#prop.test
+#prop.trend.test
+#spineplot
+
+g = ggplot(X, aes(pop_name))
+g + geom_bar(aes(fill=as.factor(score))) # kind of spine plot, colors not great
