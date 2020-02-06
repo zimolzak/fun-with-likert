@@ -17,4 +17,15 @@ moderate_ramp = likert_beta(samp_size, 1.5, 1)
 very_spiky    = likert_beta(samp_size, 1.5, 0.5)
 less_spiky    = likert_beta(samp_size, 1,   0.5)
 
+
+
+samp_names = c("centered", "r_tail", "l_tail", "concave", "more_concave", "ramp", "gentle_ramp", "ramp2", "moderate_ramp", "very_spiky", "less_spiky")
+
+
+
+
+
 qplot(concave, xlim=c(-0.2, 4.2))
+
+
+wilcox.test(ramp, gentle_ramp)
