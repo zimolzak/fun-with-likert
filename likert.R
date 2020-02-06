@@ -44,6 +44,8 @@ p + facet_grid(rows = vars(pop_name))  # all in one col, lined up
 
 p + facet_wrap(vars(pop_name))    # wrap, broken in several cols
 
+p + facet_grid(rows = vars(question_num), cols = vars(timepoint)) # best one yet
+
 wilcox.test(ramp, gentle_ramp)
 
 #prop.test
