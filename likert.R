@@ -47,17 +47,7 @@ for (s in samp_names[-1]){
 #### PLOTS AND ANALYSIS
 
 p = ggplot(X, aes(score)) + geom_bar()
-p + facet_grid(rows = vars(pop_name))  # all in one col, lined up
-
-p + facet_wrap(vars(pop_name))    # wrap, broken in several cols
-
 p + facet_grid(rows = vars(question_num), cols = vars(group)) # best one yet
-
-g = ggplot(X, aes(pop_name))
-g + geom_bar(aes(fill=as.factor(score))) # kind of like spineplot, colors not great
-
-
-#### TESTS
 
 Results = data.frame()
 
@@ -76,8 +66,6 @@ for (q in 1:6){
         #print(tt)
         #print(catt)
 }
-
-tapply(X$pop_name, X[,-2], length) # 5x2 tables for each of 6 questions
 
 # T test maybe OK?
 # Norman G. Adv Health Sci Educ Theory Pract. 2010 Dec;15(5):625-32. PMID 20146096.
