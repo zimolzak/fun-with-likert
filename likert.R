@@ -1,5 +1,5 @@
 library(ggplot2)
-samp_size = 650
+samp_size = 60
 
 likert_beta = function(n, a, b){
         round(rbeta(n, a, b) * 4)
@@ -16,3 +16,5 @@ ramp2         = likert_beta(samp_size, 2,   1)
 moderate_ramp = likert_beta(samp_size, 1.5, 1)
 very_spiky    = likert_beta(samp_size, 1.5, 0.5)
 less_spiky    = likert_beta(samp_size, 1,   0.5)
+
+qplot(concave, xlim=c(-0.2, 4.2))
