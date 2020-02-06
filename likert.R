@@ -17,14 +17,24 @@ moderate_ramp = likert_beta(samp_size, 1.5, 1)
 very_spiky    = likert_beta(samp_size, 1.5, 0.5)
 less_spiky    = likert_beta(samp_size, 1,   0.5)
 
-samp_names = c("centered", "r_tail", "l_tail", "concave", "more_concave", "ramp", "gentle_ramp", "ramp2", "moderate_ramp", "very_spiky", "less_spiky")
+samp_names = c("centered", "r_tail", "l_tail", "concave", "more_concave", "ramp", "gentle_ramp", "ramp2", "moderate_ramp", "very_spiky", "less_spiky", "moderate_ramp")
 
-X = data.frame(score = centered, pop_name = rep("centered", length(centered)))
-
+X = data.frame(score = centered, pop_name = rep("centered", length(centered)), 
+								timepoint = rep("pre", length(centered)),
+								question_num = rep(1, length(centered)))
+npanel = 1
 for (s in samp_names[-1]){
+	tp = "pre"
+	if(npanel %% 2 == 1){
+		tp = "post"
+	}
+	qn = floor(npanel / 2) + 1
 	temp_vec = eval(parse(text=s))
-	temp_frame = data.frame(score = temp_vec, pop_name = rep(s, length(temp_vec)))
+	temp_frame = data.frame(score = temp_vec, pop_name = rep(s, length(temp_vec)), 
+											timepoint = rep(tp, length(temp_vec)),
+											question_num = rep(qn, length(temp_vec)))
 	X = rbind(X, temp_frame)
+	npanel = npanel + 1
 }
 
 #### PLOTS AND ANALYSIS
