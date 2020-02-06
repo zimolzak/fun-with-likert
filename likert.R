@@ -71,7 +71,10 @@ for (q in 1:6){
 #prop.test
 #prop.trend.test
 
-with(X[ X$question_num == 1, ], table(timepoint, score)) # 2x5 table
+tab = with(X[ X$question_num == 1, ], table(score, timepoint)) # 5x2 table
+prop.trend.test(tab[,1], apply(tab,1, sum))
+# https://www.rdocumentation.org/packages/DescTools/versions/0.99.32/topics/CochranArmitageTest
+
 
 tapply(X$pop_name, X[,-2], length) # 5x2 tables for each of 6 questions
 
