@@ -30,9 +30,11 @@ for (s in samp_names[-1]){
 }
 
 
+p = ggplot(X, aes(score)) + geom_histogram()
+p + facet_grid(rows = vars(pop_name))
 
 
-qplot(concave, xlim=c(-0.2, 4.2))
+
 
 
 wilcox.test(ramp, gentle_ramp)
