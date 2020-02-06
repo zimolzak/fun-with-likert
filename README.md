@@ -20,13 +20,13 @@ table) are tried:
 know ordinal from categorical)
 
 Some authors say that the t-test might be more appropriate than it
-seems.[^norman][^sullivan]
+seems. See [Norman] and [Sullivan].
 
-[^norman]: Norman G. Adv Health Sci Educ Theory Pract. 2010
-Dec;15(5):625-32. https://www.ncbi.nlm.nih.gov/pubmed/20146096
+[Norman]: https://www.ncbi.nlm.nih.gov/pubmed/20146096 "Norman G. Adv
+Health Sci Educ Theory Pract. 2010 Dec;15(5):625-32."
 
-[^sullivan]: Sullivan & Artino. J Grad Med Educ. 2013 Dec; 5(4):
-541–542. https://www.ncbi.nlm.nih.gov/pubmed/24454995
+[Sullivan]: https://www.ncbi.nlm.nih.gov/pubmed/24454995 "Sullivan &
+Artino. J Grad Med Educ. 2013 Dec; 5(4): 541–542."
 
 
 
