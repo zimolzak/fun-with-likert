@@ -63,18 +63,14 @@ for (q in 1:6){
 	wt = wilcox.test(X[X$question_num == q & X$timepoint == "pre", ]$score,
 				X[X$question_num == q & X$timepoint == "post", ]$score)
 	tt = t.test(score ~ timepoint, data = X[X$question_num == q, ])
+	tab = with(X[ X$question_num == q, ], table(score, timepoint)) # 5x2 table
+	catt = prop.trend.test(tab[,1], apply(tab,1, sum))
+	# https://www.rdocumentation.org/packages/DescTools/versions/0.99.32/topics/CochranArmitageTest
 	print(q)
 	print(wt)
 	print(tt)
+	print(catt)
 }
-
-#prop.test
-#prop.trend.test
-
-tab = with(X[ X$question_num == 1, ], table(score, timepoint)) # 5x2 table
-prop.trend.test(tab[,1], apply(tab,1, sum))
-# https://www.rdocumentation.org/packages/DescTools/versions/0.99.32/topics/CochranArmitageTest
-
 
 tapply(X$pop_name, X[,-2], length) # 5x2 tables for each of 6 questions
 
