@@ -48,6 +48,7 @@ for (s in samp_names[-1]){
 
 p = ggplot(X, aes(score)) + geom_bar()
 p + facet_grid(rows = vars(question_num), cols = vars(group)) # best one yet
+ggsave("facet_grid.png")
 
 Results = data.frame()
 

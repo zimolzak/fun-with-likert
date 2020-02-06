@@ -13,3 +13,5 @@ a 0 to 4 Likert scale.
     4        4 0.02493287 0.01268945 0.01277263
     5        5 0.00000512 0.00000393 0.00000805
     6        6 0.01127898 0.01054839 0.01079998
+
+![plot of likert data](facet_grid.png "Plot of Likert data")
