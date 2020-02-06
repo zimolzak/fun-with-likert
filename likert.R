@@ -26,18 +26,18 @@ less_spiky    = likert_beta(samp_size, 1,   0.5)
 samp_names = c("centered", "r_tail", "l_tail", "concave", "more_concave", "ramp", "gentle_ramp", "ramp2", "moderate_ramp", "very_spiky", "less_spiky", "moderate_ramp")
 
 X = data.frame(score = centered, pop_name = rep("centered", length(centered)), 
-								timepoint = rep("pre", length(centered)),
+								group = rep("A", length(centered)),
 								question_num = rep(1, length(centered)))
 npanel = 1
 for (s in samp_names[-1]){
-	tp = "pre"
+	tp = "A"
 	if(npanel %% 2 == 1){
-		tp = "post"
+		tp = "B"
 	}
 	qn = floor(npanel / 2) + 1
 	temp_vec = eval(parse(text=s))
 	temp_frame = data.frame(score = temp_vec, pop_name = rep(s, length(temp_vec)), 
-											timepoint = rep(tp, length(temp_vec)),
+											group = rep(tp, length(temp_vec)),
 											question_num = rep(qn, length(temp_vec)))
 	X = rbind(X, temp_frame)
 	npanel = npanel + 1
@@ -51,7 +51,7 @@ p + facet_grid(rows = vars(pop_name))  # all in one col, lined up
 
 p + facet_wrap(vars(pop_name))    # wrap, broken in several cols
 
-p + facet_grid(rows = vars(question_num), cols = vars(timepoint)) # best one yet
+p + facet_grid(rows = vars(question_num), cols = vars(group)) # best one yet
 
 g = ggplot(X, aes(pop_name))
 g + geom_bar(aes(fill=as.factor(score))) # kind of like spineplot, colors not great
@@ -62,10 +62,10 @@ g + geom_bar(aes(fill=as.factor(score))) # kind of like spineplot, colors not gr
 Results = data.frame()
 
 for (q in 1:6){
-	wt = wilcox.test(X[X$question_num == q & X$timepoint == "pre", ]$score,
-				X[X$question_num == q & X$timepoint == "post", ]$score)
-	tt = t.test(score ~ timepoint, data = X[X$question_num == q, ])
-	tab = with(X[ X$question_num == q, ], table(score, timepoint)) # 5x2 table
+	wt = wilcox.test(X[X$question_num == q & X$group == "A", ]$score,
+				X[X$question_num == q & X$group == "B", ]$score)
+	tt = t.test(score ~ group, data = X[X$question_num == q, ])
+	tab = with(X[ X$question_num == q, ], table(score, group)) # 5x2 table
 	catt = prop.trend.test(tab[,1], apply(tab,1, sum))
 	# https://www.rdocumentation.org/packages/DescTools/versions/0.99.32/topics/CochranArmitageTest
 
