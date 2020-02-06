@@ -9,7 +9,7 @@ a 0 to 4 Likert scale.
 Results
 ========
 
-Here is a table of *p* values, comparing group A to group B, for each
+Below is a table of *p* values, comparing group A to group B, for each
 of the 6 questions. The following statistical tests (columns in the
 table) are tried:
 
@@ -18,6 +18,17 @@ table) are tried:
 3. Chi-squared test for trend in proportions (Cochran–Armitage test for trend)
 4. Pearson's chi-squared test ("plain old" chi-squared that doesn't
 know ordinal from categorical)
+
+Some authors say that the t-test might be more appropriate than it
+seems.[^norman][^sullivan]
+
+[^norman]: Norman G. Adv Health Sci Educ Theory Pract. 2010
+Dec;15(5):625-32. https://www.ncbi.nlm.nih.gov/pubmed/20146096
+
+[^sullivan]: Sullivan & Artino. J Grad Med Educ. 2013 Dec; 5(4):
+541–542. https://www.ncbi.nlm.nih.gov/pubmed/24454995
+
+
 
 ```
 question wilcoxon_p    ttest_p     catt_p      chi_p
