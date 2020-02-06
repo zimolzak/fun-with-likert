@@ -14,10 +14,15 @@ of the 6 questions. Three statistical tests (columns in the table) are
 tried:
 
 1. Wilcoxon rank sum, a.k.a. Mann-Whitney
+
 2. T-test (unpaired)
-3. Chi-squared test for trend in proportions (Cochran–Armitage test for trend)
+
+3. Chi-squared test for trend in proportions (Cochran–Armitage test
+for trend)
+
 4. Pearson's chi-squared test ("plain old" chi-squared that doesn't
 know ordinal from categorical)
+
 
       question wilcoxon_p    ttest_p     catt_p      chi_p
              1 0.00008753 0.00007020 0.00010058 0.00103063
@@ -27,4 +32,6 @@ know ordinal from categorical)
              5 0.00000512 0.00000393 0.00000805 0.00026705
              6 0.01127898 0.01054839 0.01079998 0.03702442
 
+
 ![plot of likert data](facet_grid.png "Plot of Likert data")
+
