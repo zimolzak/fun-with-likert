@@ -48,8 +48,8 @@ for (s in samp_names[-1]){
 #### Sketch 2 probability distributions and make variates from them.
 #### Allows us to more easily make tricky ones with high P values.
 
-q7a = c(1, 2, 3, 2, 1)
-q7b = c(1, 2, 2.5, 2.5, 1)
+q7a = c(1, 3.2, 2, 1.5, 1)
+q7b = c(1, 1.5, 2, 3, 1)
 q7a = round(samp_size / sum(q7a) * q7a) # normalize
 q7b = round(samp_size / sum(q7b) * q7b)
 
@@ -73,7 +73,7 @@ ggsave("facet_grid.png")
 
 Results = data.frame()
 
-for (q in 1:6){
+for (q in 1:7){
         wt = wilcox.test(X[X$question_num == q & X$group == "A", ]$score,
                          X[X$question_num == q & X$group == "B", ]$score)
         tt = t.test(score ~ group, data = X[X$question_num == q, ])
