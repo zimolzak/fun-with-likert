@@ -3,9 +3,10 @@ library(ggplot2)
 #### GENERATE ASSORTED SAMPLES OF FAKE LIKERT DATA
 
 samp_size = 60
+max_likert = 4
 
 likert_beta = function(n, a, b){
-        round(rbeta(n, a, b) * 4)   # 0 to 4 Likert scale
+        round(rbeta(n, a, b) * max_likert)   # 0 to 4 Likert scale
 }
 
 centered      = likert_beta(samp_size, 2,   2)
@@ -44,6 +45,26 @@ for (s in samp_names[-1]){
 }
 
 
+#### Sketch 2 probability distributions and make variates from them.
+#### Allows us to more easily make tricky ones with high P values.
+
+q7a = c(1, 2, 3, 2, 1)
+q7b = c(1, 2, 2.5, 2.5, 1)
+q7a = round(samp_size / sum(q7a) * q7a) # normalize
+q7b = round(samp_size / sum(q7b) * q7b)
+
+for (s in 0:max_likert){
+	replicates_a = q7a[s+1]
+	replicates_b = q7b[s+1]
+	for (i in 1:replicates_a){
+		X = rbind(X, data.frame(score = s, pop_name = "sketched", group = "A", question_num = 7))
+	}
+	for (i in 1:replicates_b){
+		X = rbind(X, data.frame(score = s, pop_name = "sketched", group = "B", question_num = 7))
+	}
+}
+
+
 #### PLOTS AND ANALYSIS
 
 p = ggplot(X, aes(score)) + geom_bar()
@@ -63,13 +84,9 @@ for (q in 1:6){
 
         temp_frame = data.frame(question = q, wilcoxon_p = wt$p.value, ttest_p = tt$p.value, catt_p = catt$p.value, chi_p = cs$p.value)
         Results= rbind(Results, temp_frame)
-        #print(q)
-        #print(wt)
-        #print(tt)
-        #print(catt)
 }
 
-# T test maybe OK?
+# T test may be OK?
 # Norman G. Adv Health Sci Educ Theory Pract. 2010 Dec;15(5):625-32. PMID 20146096.
 # Sullivan & Artino. J Grad Med Educ. 2013 Dec; 5(4): 541–542. PMID 24454995.
 
