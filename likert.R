@@ -27,11 +27,11 @@ less_spiky    = likert_beta(SAMP_SIZE, 1,   0.5)
 # Group:        A                B
 
 samp_names = c("centered",      "r_tail",         # question 1
-	       "l_tail",        "concave",        # question 2
-	       "more_concave",  "ramp",		  # 3
-	       "gentle_ramp",   "ramp2",	  # 4
-	       "moderate_ramp", "very_spiky",	  # 5
-	       "less_spiky",    "moderate_ramp")  # 6
+               "l_tail",        "concave",        # question 2
+               "more_concave",  "ramp",           # 3
+               "gentle_ramp",   "ramp2",          # 4
+               "moderate_ramp", "very_spiky",     # 5
+               "less_spiky",    "moderate_ramp")  # 6
 
 # Q1 group A
 
@@ -66,16 +66,16 @@ q7a = round(SAMP_SIZE / sum(q7a) * q7a) # normalize
 q7b = round(SAMP_SIZE / sum(q7b) * q7b)
 
 for (s in 0:MAX_LIKERT){
-	replicates_a = q7a[s+1]
-	replicates_b = q7b[s+1]
-	for (i in 1:replicates_a){
-		X = rbind(X, data.frame(score = s, pop_name = "sketched",
-		                        group = "A", question_num = 7))
-	}
-	for (i in 1:replicates_b){
-		X = rbind(X, data.frame(score = s, pop_name = "sketched",
-		                        group = "B", question_num = 7))
-	}
+        replicates_a = q7a[s+1]
+        replicates_b = q7b[s+1]
+        for (i in 1:replicates_a){
+                X = rbind(X, data.frame(score = s, pop_name = "sketched",
+                                        group = "A", question_num = 7))
+        }
+        for (i in 1:replicates_b){
+                X = rbind(X, data.frame(score = s, pop_name = "sketched",
+                                        group = "B", question_num = 7))
+        }
 }
 
 
@@ -97,7 +97,7 @@ for (q in 1:7){
         # https://www.rdocumentation.org/packages/DescTools/versions/0.99.32/topics/CochranArmitageTest
 
         temp_frame = data.frame(question = q, wilcoxon_p = wt$p.value,
-	                        ttest_p = tt$p.value, catt_p = catt$p.value, chi_p = cs$p.value)
+                                ttest_p = tt$p.value, catt_p = catt$p.value, chi_p = cs$p.value)
         Results= rbind(Results, temp_frame)
 }
 
