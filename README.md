@@ -3,14 +3,14 @@ Fun with Likert
 
 Make some fake unpaired Likert data, plot it, and analyze it with some
 tests. This pretends that you have two groups (A and B), with 60
-people in each group, and your survey has 6 questions, each scored on
+people in each group, and your survey has 7 questions, each scored on
 a 0 to 4 Likert scale.
 
 Results
 ========
 
 Below is a table of *p* values, comparing group A to group B, for each
-of the 6 questions. The following statistical tests (columns in the
+of the questions. The following statistical tests (columns in the
 table) are tried:
 
 1. Wilcoxon rank sum, a.k.a. Mann-Whitney
