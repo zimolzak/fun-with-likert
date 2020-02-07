@@ -67,7 +67,7 @@ for (s in 0:max_likert){
 
 #### PLOTS AND ANALYSIS
 
-p = ggplot(X, aes(score)) + geom_bar()
+p = ggplot(X, aes(score)) + geom_bar() + xlab("Likert score")
 p + facet_grid(rows = vars(question_num), cols = vars(group)) # best one yet
 ggsave("facet_grid.png")
 
